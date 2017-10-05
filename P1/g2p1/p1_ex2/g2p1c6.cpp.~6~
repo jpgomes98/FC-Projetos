@@ -1,0 +1,136 @@
+/* Projeto 1- 5.10.2017*/
+/* Ex 2.c */
+/*João Pedro Gomes 87327
+  Mariana Silva 87336*/
+
+#include <iostream>
+#include <fstream>
+#include <cmath>
+
+using namespace std;
+
+double prng(double x1)
+{
+  double r, c, m;
+  double x2;
+
+
+  /* Parâmetros do PRNG */
+  m = pow(2, 32);
+  c = 1013904223;
+  r = 1664525; 
+  
+  x2 = fmod((r * x1 + c), m); // calcular x(i+1) com x(i) através da expressão do PRNG
+   
+  return x2;
+}
+
+int main()
+{
+  int n_max;
+  double r, c, m;
+  double x1, x2;
+
+  m = pow(2, 32);
+
+   /* Monte Carlo */
+  double raio;
+  double quociente;
+  double result;
+
+  int ni, ne, nt;
+  double pi;
+
+  /* Ponteiros */
+    
+  double **mat;
+  double (*f)(double);
+    
+  /* Inicialização dos ficheiros */
+  
+  ofstream output("output3.dat");
+
+  ofstream pontos_i("pontos_i.dat");
+  ofstream pontos_e("pontos_e.dat");
+
+  ofstream piOut("pi_out.dat");
+
+  /* Input do valor inicial e do nº de iterações a correr */
+
+  cout << " Introduza um x inicial: " << endl;
+  while(!(cin >> x1)) // Teste de validação de input
+    {
+      cin.clear();
+      cin.ignore(100, '\n');
+      cout<<"Introduza um número válido: ";
+    }
+  
+  cout << " Introduza o número de iterações: " << endl;
+  while(!(cin >> n_max)) // Teste de validação de input
+    {
+      cin.clear();
+      cin.ignore(100, '\n');
+      cout<<"Introduza um número válido: ";
+    }
+
+  /* Alocar espaço na memória para a matriz */
+
+  f = &prng;
+  
+  mat = new(nothrow) double*[n_max];
+  for (int i = 0; i < n_max; i++)
+    {
+      mat[i] = new double[2];
+    }
+
+
+  for (int i = 0; i < n_max; i++)
+    {
+      x2 = (*f)(x1);
+      mat[i][0] = x1 / m;
+      mat[i][1] = x2 / m;
+      x1 = x2;
+    }
+
+
+  for (int i = 0; i < n_max; i++)
+    {
+      cout << mat[i][0] << " " << mat[i][1] << endl;
+    }
+
+  ni = 0;
+  ne = 0;
+      
+  for (int i = 0; i < n_max; i++)
+    {
+      raio = sqrt((mat[i][0] * mat[i][0]) + (mat[i][1] * mat[i][1]));
+
+      if (raio < 1) // Cai dentro do círculo?
+	{
+	  ni++;
+	  pontos_i << mat[i][0] << " " << mat[i][1] << endl;
+	}
+      else
+	{
+	  ne++;
+	  pontos_e << mat[i][0] << " " << mat[i][1] << endl;
+	}
+      
+      if ((i % 10 == 0) && (i > 0))
+	{
+	  pi = 4 * ((double) ni / (double) i);
+	  piOut << i << " " << pi << endl;
+	}
+    }      
+
+
+  for (int i = 0; i < n_max; i++)
+    {
+      delete[] mat[i];
+    }
+   
+  delete[] mat;
+ 
+  return 0;
+
+}

@@ -1,0 +1,125 @@
+/* Ex 2.b */
+
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+
+double prng(double x1)
+{
+  double r, c, m;
+  double x2;
+
+
+  /* Parâmetros do PRNG */
+  m = pow(2, 32);
+  c = 1013904223;
+  r = 1664525; 
+  
+  x2 = fmod((r * x1 + c), m); // calcular x(i+1) com x(i) através da expressão do PRNG
+   
+  return x2;
+}
+
+int main()
+{
+  int n_max, n_max_total;
+  double r, c, m;
+  double x1, x2;
+
+  m = pow(2, 32);
+
+   /* Monte Carlo */
+  double raio;
+  double quociente;
+  double result;
+
+  int ni, ne, nt;
+  double pi;
+
+  /* Ponteiros */
+    
+  double **mat;
+  double (*f)(double);
+    
+  /* Inicialização dos ficheiros */
+  
+  ofstream output("output3.dat");
+
+  ofstream pontos_i("pontos_i.dat");
+  ofstream pontos_e("pontos_e.dat");
+
+  ofstream piOut("pi_out.dat");
+
+  /* Input do valor inicial e do nº de iterações a correr */
+
+  cout << " Introduza um x inicial: " << endl;
+  cin >> x1;
+  
+  cout << " Introduza o número de iterações máximo: " << endl;
+  cin >> n_max_total;
+
+  /* Alocar espaço na memória para a matriz */
+
+  f = &prng;
+  
+  mat = new(nothrow) double*[n_max_total];
+  for (int i = 0; i < n_max_total; i++)
+    {
+      mat[i] = new double[2];
+    }
+
+
+  for (int i = 0; i < n_max_total; i++)
+    {
+      x2 = (*f)(x1);
+      mat[i][0] = x1 / m;
+      mat[i][1] = x2 / m;
+      x1 = x2;
+    }
+
+
+  for (int i = 0; i < n_max_total; i++)
+    {
+      cout << mat[i][0] << " " << mat[i][1] << endl;
+    }
+
+
+  for (int j = 0; j < n_max_total; j += 100)
+    {
+      
+      nt = j;
+      
+      for (int i = 0; i < nt; i++)
+	{
+	  raio = sqrt((mat[i][0] * mat[i][0]) + (mat[i][1] * mat[i][1]));
+
+	  if (raio < 1) // Cai dentro do círculo?
+	    {
+	      ni++;
+	      pontos_i << mat[i][0] << " " << mat[i][1] << endl;
+	    }
+	  else
+	    {
+	      ne++;
+	      pontos_e << mat[i][0] << " " << mat[i][1] << endl;
+	    }
+	}
+
+      pi = 4 * ((double) ni / (double) nt);
+      piOut << nt << " " << pi << endl;
+      
+    }
+
+  for (int i = 0; i < n_max_total; i++)
+    {
+      delete[] mat[i];
+    }
+   
+  delete[] mat;
+ 
+  return 0;
+
+}

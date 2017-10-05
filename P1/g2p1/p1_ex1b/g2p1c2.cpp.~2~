@@ -1,0 +1,38 @@
+/* Projeto 1- 5.10.2017*/
+/* Ex 1.b */
+/*João Pedro Gomes 87327
+  Mariana Silva 87336*/
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+  int n_max;
+  float r, x; // r é o parametro geométrico, x é o valor inicial
+
+  //inicializa o ficheiro output.dat onde vão ser escritos os valores de i e x
+  ofstream output("output.dat");
+
+  cout << " Introduza o parâmetro r: " << endl;
+  cin >> r;
+
+  cout << " Introduza um x inicial: " << endl;
+  cin >> x;
+
+  cout << " Introduza o número de iterações: " << endl;
+  cin >> n_max;
+  
+  /* ciclo das iteradas */
+  for (int i = 0; i < n_max; i++)
+    {
+      x *= r;
+      cout << "x(" << i << ")= " << x << endl;//imprime os valores no terminal
+      output << i << " " << x << endl; //imprime os valores no ficheiro  
+    }
+  
+  return 0;
+
+}
