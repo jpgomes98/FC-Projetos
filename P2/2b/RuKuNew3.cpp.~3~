@@ -2,7 +2,7 @@
 #include <cmath>
 #include <fstream>
 #include <cstdlib>
-#include "g2p2c3_header.h"
+#include "g2p2c4_header.h"
 
 using namespace std;
 
@@ -10,7 +10,14 @@ using namespace forF;
 
 using namespace forRK;
 
-double* soma_vetorial(double coord[3], double k, double h, double c, int j)
+double ro (double x[3])
+{
+  double ro;
+  ro = sqrt((x[0])*(x[0]) + (x[1])*(x[1]) + (x[2])*(x[2]));
+  return ro;
+}
+
+double* soma_vetorial(double coord[3], double k, double h, double c, double j)
 {
   static double soma[3];
   
@@ -18,11 +25,11 @@ double* soma_vetorial(double coord[3], double k, double h, double c, int j)
     {
       if (i == j)
 	{
-	  soma[i] = coord[i] + c * h * k; 
+	  soma[i] = coord[3] + c * h * k; 
 	}
       else
 	{
-	  soma[i] = coord[i];
+	  soma[i] = coord[3];
 	}
     }
   
@@ -34,7 +41,7 @@ double RuKuNew3 (double* (*Fovm)(double, double[3], double[3]), double h, double
   double k1_x[3], k2_x[3], k3_x[3], k4_x[3];
   double k1_v[3], k2_v[3], k3_v[3], k4_v[3];
   double t1;
-  double *p1, *p2, *p3, *p4; //  ponteiros auxiliares
+  double *p1, *p2, *p3, *p4;
       
   /* Cálculo dos declives do método Runge-Kutta */
   

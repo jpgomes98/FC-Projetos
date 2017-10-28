@@ -2,7 +2,7 @@
 #include <cmath>
 #include <fstream>
 #include <cstdlib>
-#include "g2p2c2_header.h"
+#include "g2p2c3_header.h"
 
 namespace forRK {
    double x1[3];
@@ -42,9 +42,9 @@ int main ()
 
   m = 1;
   k = 1;
-  lbd = 0.5;
-  F0 = 0.5;
-  wf = 3;
+  lbd = 2;
+  F0 = 1;
+  wf = 1;
 
 
   input5 >> x0[0];
@@ -76,20 +76,10 @@ int main ()
   
   for (int i = 0; i < nmax; i++)
     {
-      t = RuKuNew1(Fovm, h, t, x1, v1);
-      /*sistema[i][0] = t;
-      sistema[i][1] = forRK::x1;
-      sistema[i][2] = forRK::v1;*/
+      t = RuKuNew3(Fovm, h, t, x1, v1);
       output6 << t << " " << x1[0] << " " << x1[1] << " " << x1[2] << " " << v1[0] << " " << v1[1] << " " << v1[2] << endl;
     }
 
-  /*for (int i = 0; i < nmax; i++)
-    {
-      delete[] sistema[i];
-    }
-  
-  delete[] sistema;
-  */
   return 0;
 }
 
