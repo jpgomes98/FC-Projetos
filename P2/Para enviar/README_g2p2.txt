@@ -16,5 +16,5 @@ g2p2c2.cpp: Criamos um código que utiliza o método de Runge Kutta para descrev
 g2p2c3.cpp: Criamos um código que utiliza o método de Runge Kutta para descrever a trajetória de uma partícula tridimensional sujeita a uma força no eixo dos OxO.
 Não conseguimos ter os resultados procurados mas não tinhamos mais tempo para debugging como tal decidimos apresentar o que já tínhamos.
 
-g2p2c4.cpp: Utilizamos o código anterior para descrever a trajetória da Terra para vários valores de velocidade. Não tivemos tempo para completar como queríamos o programa dado que o projeto era extremamente extenso.
+g2p2c4.cpp: Utilizamos o código anterior para descrever a trajetória da Terra para vários valores de velocidade. Não tivemos tempo para completar como queríamos o programa dado que o projeto era extremamente extenso e necessita de muito tempo para debugging.
 
