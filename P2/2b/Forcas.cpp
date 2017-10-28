@@ -25,9 +25,9 @@ double* D2_Satelite (double t, double x[3], double v[3])
 {
   static double b[3];
 
-  b[0] = -G * ((m_terra)/(pow(ro(x), 3))) * x[0] - 0.5 * ro0 * exp(-((x[2] - R_terra))/a_barra)* (A_satelite / m_satelite) * ro(v) * v[0];
-  b[1] = -G * ((m_terra)/(pow(ro(x), 3))) * x[1] - 0.5 * ro0 * exp(-((x[2] - R_terra))/a_barra)*  (A_satelite / m_satelite) * ro(v) * v[1];
-  b[2] = -G * ((m_terra)/(pow(ro(x), 3))) * x[2] - 0.5 * ro0 * exp(-((x[2] - R_terra))/a_barra) * (A_satelite / m_satelite) * ro(v) * v[2];
+  b[0] = -G * ((m_terra)/(pow(ro(x), 3))) * x[0] - 0.5 * ro0 * exp(-((ro(x) - R_terra))/a_barra)* (A_satelite / m_satelite) * ro(v) * v[0];
+  b[1] = -G * ((m_terra)/(pow(ro(x), 3))) * x[1] - 0.5 * ro0 * exp(-((ro(x) - R_terra))/a_barra)*  (A_satelite / m_satelite) * ro(v) * v[1];
+  b[2] = -G * ((m_terra)/(pow(ro(x), 3))) * x[2] - 0.5 * ro0 * exp(-((ro(x) - R_terra))/a_barra) * (A_satelite / m_satelite) * ro(v) * v[2];
   
   return b;
 }

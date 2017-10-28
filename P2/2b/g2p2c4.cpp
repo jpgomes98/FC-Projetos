@@ -43,7 +43,8 @@ int main ()
   double h;
   int nmax, n_jump;
 
-  double* (*Fovm3)(double, double[3] , double[3]); /* Ponteiro para função que retorna ponteiros */
+  double* (*Fovm3)(double, double[3] , double[3]);
+  /* Ponteiro para função que retorna ponteiros */
 
   //double **sistema;
 
@@ -65,7 +66,6 @@ int main ()
   R_terra= 6.371e6;
   A_satelite= 10;
   m_satelite =1e4;
-  x0[0]=0;
   a_barra=8000;
 
 
@@ -106,7 +106,12 @@ int main ()
       /*sistema[i][0] = t;
       sistema[i][1] = forRK::x1;
       sistema[i][2] = forRK::v1;*/
-      output6 << t << " " << x1[0] << endl;
+      
+      if (i % n_jump)
+	{
+	  cout << t << " " << x1[0] << endl;
+	  output6 << i << t << " " << x1[0] << " " << x1[1] << " " << x1[2]<< " " << v1[0] << " " << v1[1] << " " << v1[2]  << " " << ro(x1) - R_terra << " " << ro (v1) << endl;
+	}
     }
 
   /*for (int i = 0; i < nmax; i++)
