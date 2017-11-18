@@ -1,0 +1,71 @@
+//---------- VecAnyD_main.cpp ----------
+//
+//
+#include <iostream>
+#include <cmath>
+#include "VecAnyD.h"
+
+
+int main()
+{
+    using namespace std;
+    
+
+
+    // aceita input usando os métodos da classe
+     cout<<"de a dimensao dos vetores \n";
+    unsigned n;
+     cin>> n;
+     cout<<"de todos os elementos do 1o vetor \n";
+    Vector r1(n); 
+
+
+    for(unsigned i=0;i<n;i++){ 
+      double vi; 
+       cin>> vi; 
+      r1.set(i,vi); // com o método set inicializamos ou alteramos os valores do vetor
+    }
+    
+    cout<<"de todos os elementos do 2o vetor \n";
+    Vector r2(n); 
+    for(unsigned i=0;i<n;i++){ 
+      double vi2; 
+       cin>> vi2; 
+      r2.set(i,vi2); // com o método set inicializamos ou alteramos os valores do vetor
+    }
+
+    cout<<"de o valor da constante \n";
+    double a; 
+    cin>> a; 
+    
+    
+     cout << "r1: " << r1 << endl;
+     cout << "r2: " << r2 << endl;
+     cout << "-r1=" << -r1 << endl; 
+     cout << "r1+r2="<< r1+r2 << endl;
+     cout << "r1-r2="<< r1-r2 << endl;
+
+     cout << "a+r1=" << a+r1 << endl;
+     cout << "a*r1=" << a*r1 << endl;
+
+     double prod;
+     prod = dot(r1, r2);
+     cout << "r1.r2=" << prod <<endl;
+
+     double mod;
+     mod = sqrt(dot(r1,r1));
+     cout << "|r1|=" << mod <<endl;
+
+     Vector medi(n);
+     for(unsigned i=0; i<n; i++)
+       {
+	 medi.set(i, 0);
+       }
+               
+     medi=med(r1);
+     cout << "med(r1)=" << medi << endl;
+
+      
+    return  0;
+    
+}
