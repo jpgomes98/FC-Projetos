@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 1.a.
 Expressão de cada iterada para resolução numérica da Eq. do Calor.
@@ -19,3 +20,40 @@ Neste caso, a dependência do tempo neste método significa que cada iteração 
 8) n_print (calculada como sendo 3000 para garantir a impressão dos valores a cada 30s)
 
 1.c. Foi calculado que após 141,23s a diferença entre a temperatura no centro e a temperatura inicialmente definida para a fronteira era inferior a 1%. Tal ilustra o processo físico que acompanha a difusão térmica dependente da condutividade térmica do material em questão. Espera-se que uma condutividade térmica maior venha acompanhada de um menor tempo necessário até esta diferença ser menor do 1%.
+=======
+------------
+Projeto 3
+(18/11/2017)
+------------
+
+GRUPO 2
+João Pedro Leite Gomes, ist 187327
+Mariana da Cunha e Silva, ist 187336
+
+----|Pasta-> g2p3c2_a|---|2.a|---------------------------------------------------------------------
+
+-MakeFile- Ficheiro que compila todos os ficheiros e faz com que para compilar só seja necessário escrever "make" na shell.
+
+-VecAnyD.cpp- Ficheiro onde se definem as funções que são declaradas no header e que são utilizadas na main.
+
+-VecAnyD.h- Ficheiro onde se encontra o header que declaram todas funções, operadores e a classe.
+
+-VecAnyD_main.cpp- Ficheiro onde se encontra a main.
+
+---------------------------------------------------------------------------------------------------
+
+----|Pasta-> g2p3c2_b|---|2.b|---------------------------------------------------------------------
+
+-Os ficheiros MakeFile, VecAnyD.cpp e VecAnyD.h são iguais aos da pasta descrita anteriormente já que são utilizados os operadores previamente definidos.
+
+-VecAnyD_main.cpp- Ficheiro onde é aplicada a solução da equação de Fourier unidimensional de modo a descrever a Temperatura da barra em função da Posição. Este ficheiro recorre às operações e operadores utilizados anteriormente.
+
+-G2p3c2.nb- Ficheiro do mathematica onde são importados os dados e é exportado o gráfico pedido.
+
+-TemP.pdf- Pdf onde se encontra o gráfico.
+---------------------------------------------------------------------------------------------------
+
+----|IMPORTANTE|-----------------------------------------------------------------------------------
+Não foi feita a alínea 2.c por se ter feito na 1.b uma classe para matrizes.
+---------------------------------------------------------------------------------------------------
+>>>>>>> 7b8290d8807b15061ebd49ddde0829eb41142041

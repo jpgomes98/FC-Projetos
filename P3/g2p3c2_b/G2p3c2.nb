@@ -1,0 +1,95 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2952,         87]
+NotebookOptionsPosition[      2352,         69]
+NotebookOutlinePosition[      2691,         84]
+CellTagsIndexPosition[      2648,         81]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{
+   "Import", "[", 
+    "\"\</home/mariana/Documentos/Ano_2/FC/Lab/Projeto3/g2p3c2_b/Temp_x.dat\>\
+\"", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.720032044807192*^9, 3.720032194787921*^9}, {
+  3.720032601236103*^9, 
+  3.720032630945499*^9}},ExpressionUUID->"6c428b1d-78b5-4522-91a0-\
+84ed1f08b9a0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fig", "=", 
+   RowBox[{"ListLinePlot", "[", 
+    RowBox[{"data", ",", " ", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Posi\[CCedilla]\[ATilde]o_barra", ",", " ", "Temperatura"}], 
+       "}"}]}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.72003218307452*^9, 3.720032199483295*^9}, {
+   3.7200322671229687`*^9, 3.720032383894672*^9}, {3.7200324789310904`*^9, 
+   3.720032573464095*^9}, {3.720032633493576*^9, 3.72003263873878*^9}, 
+   3.7200363868811407`*^9},ExpressionUUID->"707a62c2-9e3d-488a-8470-\
+2030954b9093"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\</home/mariana/Documentos/Ano_2/FC/Lab/Projeto3/g2p3c2_b/TemP.pdf\>\"", 
+   ",", " ", "fig", ",", " ", "\"\<PDF\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.72003260992281*^9, 3.720032710938079*^9}, {
+  3.7200327410937033`*^9, 3.720032742598877*^9}, {3.7200327773310204`*^9, 
+  3.720032804057288*^9}},ExpressionUUID->"5fbbb42d-ad90-4c3a-8301-\
+2b7e032d1047"],
+
+Cell[BoxData["\<\"/home/mariana/Documentos/Ano_2/FC/Lab/Projeto3/g2p3c2_b/\
+TemP.pdf\"\>"], "Output",
+ CellChangeTimes->{
+  3.7200326574619102`*^9, {3.720032690200136*^9, 3.720032711600881*^9}, 
+   3.7200327430074673`*^9, {3.720032781736532*^9, 3.7200328047245693`*^9}, 
+   3.720032834775351*^9, 
+   3.720036390229228*^9},ExpressionUUID->"316a6341-5fd1-4996-8e7a-\
+26911fc9fd51"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{397, Automatic}, {0, Automatic}},
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 363, 10, 31, "Input",ExpressionUUID->"6c428b1d-78b5-4522-91a0-84ed1f08b9a0"],
+Cell[924, 32, 589, 13, 31, "Input",ExpressionUUID->"707a62c2-9e3d-488a-8470-2030954b9093"],
+Cell[CellGroupData[{
+Cell[1538, 49, 416, 8, 55, "Input",ExpressionUUID->"5fbbb42d-ad90-4c3a-8301-2b7e032d1047"],
+Cell[1957, 59, 379, 7, 35, "Output",ExpressionUUID->"316a6341-5fd1-4996-8e7a-26911fc9fd51"]
+}, Open  ]]
+}
+]
+*)
+
