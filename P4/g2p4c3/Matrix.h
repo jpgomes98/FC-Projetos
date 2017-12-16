@@ -66,13 +66,13 @@ class Matrix{
 bool checkDir(const string& toRead);
 // Função para testar a presença de certos ficheiros necessários à execução
 
-double quantumOsc(double k, double x);
+double quantumOsc(double k1, double x);
 
 /* Potencial a ser estudado no exercício 1.a) */
-double moleculePotential(double a, double b, double k, double x);
+double moleculePotential(double a1, double b1, double k1, double x);
 
 /* Resolver a Eq. Schrodinger Independente do Tempo */
-Matrix solveSchrodinger(double (&V_x)(double, double, double, double), Matrix& Energy, Matrix& X, int npos, double lim, int stop, istream& parametros, ofstream& outMatrix);
+Matrix solveSchrodinger(double (&V_x)(double, double, double, double), Matrix& Energy, Matrix& X, int npos, double lim, int stop, double h_bar, double m, double a, double b, double k);
 
 
 #endif

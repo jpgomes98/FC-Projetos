@@ -11,6 +11,7 @@
 
 using namespace std;
 
+
 /* Construtores*/
 
 Matrix::Matrix(size_t ncol, size_t nlin): n(ncol), m(nlin) {
@@ -723,19 +724,19 @@ bool checkDir(const string& toRead)
   
 }
 /* Potencial harmónico */
-double quantumOsc(double k, double x)
+double quantumOsc(double k1, double x)
 {
-  return 0.5 * k * (x*x);
+  return 0.5 * k1 * (x*x);
 }
 
 /* Potencial a ser estudado no exercício 1.a) */
-double moleculePotential(double a, double b, double k, double x)
+double moleculePotential(double a1, double b1, double k1, double x)
 {
-  return (k/2) * (((a * a * a * a) / (b * b)) - ((a * a * a * a) / (x * x + b * b)));
+  return (k1/2) * (((a1 * a1 * a1 * a1) / (b1 * b1)) - ((a1 * a1 * a1 * a1) / (x * x + b1 * b1)));
 }
 
 /* Adaptado ao potencial a ser estudado no exercício 1.a) */
-Matrix solveSchrodinger(double (&V_x)(double, double, double, double), Matrix& Energy, Matrix& X, int npos, double lim, int stop, istream& parametros, ofstream& outMatrix)
+Matrix solveSchrodinger(double (&V_x)(double, double, double, double), Matrix& Energy, Matrix& X, int npos, double lim, int stop, double h_bar, double m, double a, double b, double k)
 {
   /* Resolver H*phi = E*phi - Equação matricial aos vetores próprios */
   
@@ -750,19 +751,6 @@ Matrix solveSchrodinger(double (&V_x)(double, double, double, double), Matrix& E
 
   /* Função de onda solução */
   Matrix phi(npos, npos);
-  
-  /* Parâmetros físicos */
-  /* Para Schrodinger */
-  double h_bar;
-  double m;
-
-  /* Para o potencial */
-  double k;
-  double a;
-  double b;
-
-  /* Ler do ficheiro de input */
-  parametros >> k >> a >> b >> m >> h_bar;
 
   /* Parâmetros computacionais */
   double step = 2. * lim / (npos + 1); // step de rede
@@ -800,18 +788,6 @@ Matrix solveSchrodinger(double (&V_x)(double, double, double, double), Matrix& E
 	H.set(i, j, (-1) * par);
       }
     }
-  }
-
-  /* Imprimir a matriz H para um ficheiro */
-  cout << "Enviando a matriz H para um ficheiro...\n\n";
-  if(outMatrix.is_open()){
-    outMatrix << H;
-    cout << "Matriz enviada! Procure o ficheiro 'outmatrix.txt'." << endl; 
-  }
-
-  else{
-    cout << "Há algum problema com o ficheiro 'outmatrix.txt'..." << endl;
-    exit(EXIT_FAILURE);
   }
   
   /*********** Resolver de facto a eq. ***********/
