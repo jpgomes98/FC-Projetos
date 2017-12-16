@@ -1,3 +1,0 @@
-Demorou 55 clicks a inverter a matriz 9x9, ou seja, 5.5e-05 segundos.
-Demorou 984 clicks a inverter a matriz 99x99, ou seja, 0.000984 segundos.
-Demorou 1480082 clicks a inverter a matriz 999x999, ou seja, 1.48008 segundos.

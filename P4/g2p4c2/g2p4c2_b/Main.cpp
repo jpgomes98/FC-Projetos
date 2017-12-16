@@ -35,7 +35,6 @@ int main()
   ofstream output1("inversa_9.dat");
   ofstream output2("inversa_99.dat");
   ofstream output3("inversa_999.dat");
-  ofstream output4("tempos_inversao.txt");
 
   for(int i=1; i<=M9.ncol(); i++)
   {
@@ -73,7 +72,6 @@ int main()
   t = clock() - t;
 
   cout<< "Demorou "<< t<< " clicks a inverter a matriz 9x9, ou seja, "<< ((float)t)/CLOCKS_PER_SEC << " segundos." << endl;
-  output4 << "Demorou "<< t<< " clicks a inverter a matriz 9x9, ou seja, "<< ((float)t)/CLOCKS_PER_SEC << " segundos." << endl;
 
   output1<< M_inv9;
 
@@ -88,7 +86,6 @@ int main()
   t2 = clock() - t2;
 
   cout<< "Demorou "<< t2<< " clicks a inverter a matriz 99x99, ou seja, "<< ((float)t2)/CLOCKS_PER_SEC << " segundos." << endl;
-  output4 << "Demorou "<< t2<< " clicks a inverter a matriz 99x99, ou seja, "<< ((float)t2)/CLOCKS_PER_SEC << " segundos." << endl;
 
   output2<< M_inv99;
 
@@ -103,8 +100,7 @@ int main()
   t3 = clock() - t3;
 
   cout<< "Demorou "<< t3<< " clicks a inverter a matriz 999x999, ou seja, "<< ((float)t3)/CLOCKS_PER_SEC << " segundos." << endl;
-  output4<< "Demorou "<< t3<< " clicks a inverter a matriz 999x999, ou seja, "<< ((float)t3)/CLOCKS_PER_SEC << " segundos." << endl;
-
+  
   output3<< M_inv999;
 
   return 0;
