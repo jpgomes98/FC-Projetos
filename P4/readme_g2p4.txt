@@ -42,6 +42,8 @@ Verficamos então que o aumento de N_MAX tem um papel significativo no aumento d
 ---|Questão 3|---------------------------------------------------------------
 ->Alínea a
 
+
+
 ->Alínea b
 
 ->Alínea c

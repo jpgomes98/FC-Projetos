@@ -1,3 +1,5 @@
+/* FC - Ex.3 - Projeto 4*/
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -19,39 +21,46 @@ int main()
   bool plot_y_n;
   int systemReturn;
 
-  /* Time Independent Schrördinger Equation - solução para um espaço infinito 1D (grid) */
+  /* Time Independent Schrödinger Equation - solução para um espaço infinito 1D (grid) */
   Matrix grid(1, 1);
   Matrix Energy(1, 1);
   Matrix waveFunc(1, 1);
   Matrix auxWave(waveFunc);
+
+  /* Parâmetros recebidos mais à frente */
   int N;
   double limite;
-  
   int nsol; // nº de soluções a calcular
+
+  /* Parâmetros físicos */
+  /* Eq. Schrödinger */
+  double h_bar;
+  double m;
+
+  /* Potencial */
+  double k;
+  double a;
+  double b;
   
   string toRead("inputschrodinger.txt");
   
-  /* Setup dos ficheiros de escrita */
+  /* Setup dos ficheiros de escrita para indicarem o numero de pontos usados N */
   string fname("schrodinger_");
   string fend(".dat");
   string complete;
   stringstream sstm;
 
-  /* Setup gnuplot - 6 estados 
+  /* Setup gnuplot - 6 estados */
   string cmd_script("gnuplot -c multipleplot.plt ");
   string space(" ");
   string gnuplot;
   stringstream gstream;
 
-  /* Setup gnuplot - Muitos estados 
-  string plot_asmany("gnuplot -c plot_asmany.plt ");*/
 
   ifstream input;
-  /* Stream para o plot */
+  /* Stream para o plot direto */
   ofstream output;
-  /* Stream para imprimir a matriz */
-  ofstream outMatrix("outmatrix.txt");
-  
+
   srand(time(NULL));
 
   /* Setup do input de modo a garantir que obtem o ficheiro com os parâmetros de inicialização */
@@ -89,30 +98,36 @@ int main()
 
   /************* Resolver a equação de Schrödinger para um potencial especifico ****************/
 
-  cout << "*** Resolver a equação de Schrödinger num potencial específico ***" << "\n";
-  cout << "Introduza a discretização do espaço pretendida (N_max): ";
-  cin >> N;
-  cout << "Introduza a fronteira do espaço a estudar (Lambda): ";
-  cin >> limite;
-  cout << "Pretende imprimir muitos estados (Sim - 1; Não - 0): ";
+  cout << "*** Resolver a equação de Schrödinger num potencial específico ***" << "\n\n";
+
+  
+  /* Ler do ficheiro de input os parâmetros necessários */
+  input >> k >> a >> b >> m >> h_bar >> N >> limite;
+  
+  cout << "Discretização do espaço (N_max): " <<  N << endl;
+  cout << "Fronteira do espaço a estudar (Lambda): " << limite << "\n\n";
+  cout << "Pretende imprimir mais do que 4 vetores próprios (Sim - 1; Não - 0): ";
   cin >> plot_y_n;
+  cout << "\n";
 
   /* Impedir que o programa calcule todos os vetores próprios, apenas aqueles que o utilizador pretende */
   if (plot_y_n){
-    cout << "Introduza o número de soluções que pretende: ";
+    cout << "Introduza então o número de soluções que pretende: ";
     cin >> nsol;
+    cout << "\n";
   }
   else{
-    cout << "O programa irá produzir gráficos dos 6 primeiros níveis de energia permitidos." << endl;
-    nsol = 6;
+    cout << "O programa irá produzir gráficos dos 4 primeiros níveis de energia permitidos." << endl;
+    nsol = 4;
   }
   
-  /* Setup do output */
+  /* Setup do output para um ficheiro que indica o número de discretizações */
   sstm << fname << N << fend;
   complete = sstm.str();
   output.open(complete.c_str());
   /*******************/
 
+  
   /* Inicializar vetores para guardar as energias calculadas (Energy) e a discretização do espaço (grid)*/
   
   Energy.resize(1, nsol);
@@ -122,28 +137,33 @@ int main()
 
   
   cout << "Parâmetros usados: " << endl;
-  cout << " -> ħ = 1\n -> m = 1\n -> k = 1\n\n";
-  cout << "A resolver..." << endl;
+  cout << " -> ħ = " << h_bar << "\n";
+  cout << " -> m = " << m << "\n";
+  cout << " -> k = " << k << "\n";
+  cout << " -> a = " << a << "\n";
+  cout << " -> b = " << b << "\n\n";
 
   /* Resolver a equação propriamente dita, para o potencial definido por moleculePotential */
-  auxWave = solveSchrodinger(moleculePotential, Energy, grid, N, limite, nsol, input, outMatrix);
+  auxWave = solveSchrodinger(moleculePotential, Energy, grid, N, limite, nsol, h_bar, m, a, b, k);
   
   /* auxWave é um objeto auxiliar que serve de intermédio para receber os vetores próprios calculados */
   
   waveFunc.resize(nsol, auxWave.nlin());
   waveFunc = 0;
   for (int j = 1; j <= nsol; j++){
-    waveFunc.vec_in(j, auxWave.vec_out(j)); /* Obter os nsol menores valores próprios */
+    waveFunc.vec_in(j, auxWave.vec_out(j)); /* Obter os 'nsol' menores valores próprios */
   }
 
   /* Output para um ficheiro para plot */
   for (int i = 1; i <= waveFunc.nlin(); i++){
     for (int j = 0; j <= waveFunc.ncol(); j++){
       if (j == 0){
+	/* Print das discretizações */
 	output << grid(i, 1) << " ";
       }
       else{
 	if (j == waveFunc.ncol()){
+	  /* Print das componentes dos vetores próprios */
 	  output << waveFunc(i, j) << "\n";
 	}
 	else{
@@ -155,27 +175,19 @@ int main()
 
   output.close();
 
-  /* Elaborar o script gnuplot para o caso em que o utilizador se limita a querer 6 estados na mesma     imagem (0) ou 
-     no caso em que o utilizador pretende muitos estados em múltiplos ficheiros */
-
-  /*
-  if (plot_y_n){
-    gstream << plot_asmany << nsol;
+  /* Elaborar o script gnuplot para o caso em que o utilizador se limita a querer 6 estados na mesma     imagem - esta rotina seguinte permite invocar o gnuplot na parte final do programa */
+ 
+  gstream << cmd_script;
+  for (int i = 1; i <= nsol; i++){
+    gstream << space;
   }
-  else{
-    gstream << cmd_script;
-    for (int i = 1; i <= nsol; i++){
-      gstream << Energy(i , 1) << space;
-    }
-  }
-  
   gstream << "\n";
   gnuplot = gstream.str();
-  */
+  
   /*****************************/
 
-  cout << "Funções onda (vetores próprios de H): ";
-  cout << waveFunc;
+  /*  cout << "Funções onda (vetores próprios de H): ";
+      cout << waveFunc;*/
 
   cout << "Energia dos primeiros " << nsol << " níveis: ";
   cout << Energy;
@@ -183,8 +195,7 @@ int main()
 
 
 
-
-  /* systemReturn = system(gnuplot.c_str());
+  systemReturn = system(gnuplot.c_str());
   if(systemReturn == -1){
     cout << "Erro a invocar o gnuplot..." << endl;
     exit(EXIT_FAILURE);
@@ -192,7 +203,7 @@ int main()
   else{
     cout << "gnuplot invocado com sucesso!" <<endl;
     cout << "Verifique os gráficos produzidos" << endl;
-    }*/
+    }
   
   return 0;
 }
