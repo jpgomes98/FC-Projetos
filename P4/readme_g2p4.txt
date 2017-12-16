@@ -8,3 +8,4 @@ Mariana Silva    ist187336
 
 |Alínea 2|
 Já tínhamos feito o que foi pedido nas alíneas a e b de modo a que temos no código da pasta g2p4c2 os operadores já antes construídos por nós tais como as funções. Comentamos então o código e melhoramos a sua eficiência. 
+A alínea c encontra-se na pasta g2p4c3.
