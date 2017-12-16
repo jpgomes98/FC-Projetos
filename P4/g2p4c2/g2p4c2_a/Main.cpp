@@ -21,7 +21,7 @@ int main()
   Matrix u(1,3);
   Matrix S(2,3);
 
-  ifstream input("MatrizM.dat");
+  ifstream input("MatrizM.txt");
   ofstream output("Out.dat");
 
   srand(time (NULL));

@@ -27,15 +27,17 @@ onde H, como referido antes é H=(h^2)/m*k+ V(x).
 -> Alíneas a e b
 Já tínhamos feito o que foi pedido nas alíneas a e b de modo a que temos no código da pasta g2p4c2 os operadores já antes construídos por nós tais como as funções. Comentamos então o código e melhoramos a sua eficiência. 
 
+
+
 -> Alínea c
 A alínea c encontra-se na pasta g2p4c3.
 Aqui calculamos o tempo que demora a inverter matrizes com N_MAX={9,99,999} que resultam da alínea 1.a)
 
 Após fechar todas as janelas do computador exceto as necessárias corremos o código e obtivemos os seguintes resultados:
 
-N_MAX=9   -> 5.5e-05 segundos;
-N_MAX=99  -> 0.000984 segundos;
-N_MAX=999 -> 1.48008 segundos.
+N_MAX=9   -> 8.9e-05 segundos;
+N_MAX=99  -> 0.000987 segundos;
+N_MAX=999 -> 1.48635 segundos.
 
 Verficamos então que o aumento de N_MAX tem um papel significativo no aumento do tempo de inversão.
 
@@ -45,3 +47,6 @@ Verficamos então que o aumento de N_MAX tem um papel significativo no aumento d
 ->Alínea b
 
 ->Alínea c
+
+---|NOTA|-------------------------------------------------------------------- 
+Para todos os códigos aqui utilizados a compilação encontra-se compactada no Makefile e basta portanto fazer make na command line.
