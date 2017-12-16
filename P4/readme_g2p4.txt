@@ -33,9 +33,9 @@ Aqui calculamos o tempo que demora a inverter matrizes com N_MAX={9,99,999} que 
 
 Após fechar todas as janelas do computador exceto as necessárias corremos o código e obtivemos os seguintes resultados:
 
-N_MAX=9   -> 5.5e-05 segundos;
-N_MAX=99  -> 0.000984 segundos;
-N_MAX=999 -> 1.48008 segundos.
+N_MAX=9   -> 8.9e-05 segundos;
+N_MAX=99  -> 0.000987 segundos;
+N_MAX=999 -> 1.48635 segundos.
 
 Verficamos então que o aumento de N_MAX tem um papel significativo no aumento do tempo de inversão.
 
@@ -47,3 +47,9 @@ Verficamos então que o aumento de N_MAX tem um papel significativo no aumento d
 ->Alínea b
 
 ->Alínea c
+
+->Alínea d
+Concluímos, após visualização dos gráficos resultantes da alínea c, que os primeiros 2 vetores próprios representam moléculas ligadas e os 2 restantes representam moléculas livres.
+
+---|NOTA|-------------------------------------------------------------------- 
+Para todos os códigos aqui utilizados a compilação encontra-se compactada no Makefile e basta portanto fazer make na command line.
