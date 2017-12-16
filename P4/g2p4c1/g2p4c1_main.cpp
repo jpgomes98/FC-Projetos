@@ -133,6 +133,8 @@ int main()
     }
   }
 
+  cout << "Verificação de que é simétrica (1 - é simetrica, 0 - não é): " << H.isSymmetric() << endl;
+
   cout << H << "\n";
 
   /* Imprimir a matriz H para um ficheiro */
